@@ -6,8 +6,8 @@ describe Customer do
   let(:customer){ Customer.new(name) }
   describe 'statement' do
     let(:movie_title){ 'movie-title' }
-    let(:price_code){ 0 }
-    let(:movie){ Movie.new(movie_title, price_code) }
+    let(:price_instance){ RegularPrice.new }
+    let(:movie){ Movie.new(movie_title, price_instance) }
     let(:days_rented){ 10 }
     let(:rental){ Rental.new(movie, days_rented) }
     before do
