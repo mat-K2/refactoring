@@ -16,4 +16,15 @@ describe Customer do
     subject{ customer.statement }
     it{ should == "Rental Record for #{name}\n\t#{movie_title}\t14.0\nAmount owed is 14.0\nYou earned 1 frequent renter points" }
   end
+
+  describe 'print_owing(previous_amount)' do
+    before do
+      customer.add_order(Order.new(1))
+      customer.add_order(Order.new(2))
+      customer.add_order(Order.new(3))
+      customer.should_receive(:print_details).with(18)
+    end
+    subject{ customer.print_owing(10) }
+    specify{ expect{ subject }.not_to raise_error }
+  end
 end
