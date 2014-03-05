@@ -1,12 +1,10 @@
 class Order
   attr_reader :amount
-  attr_reader :base_price
   attr_accessor :quantity
   attr_accessor :item_price
 
-  def initialize (amount, base_price, quantity=nil, item_price=nil)
+  def initialize (amount, quantity=nil, item_price=nil)
     @amount = amount
-    @base_price = base_price
     @quantity = quantity
     @item_price = item_price
   end
@@ -16,13 +14,14 @@ class Order
   end
 
   def price
-    base_price = @quantity * @item_price
-
-    if base_price > 1000
-      discount_factor = 0.95
-    else
-      discount_factor = 0.98
-    end
     base_price * discount_factor
+  end
+
+  def base_price
+    @quantity * @item_price
+  end
+
+  def discount_factor
+    base_price > 1000 ? 0.95 : 0.98
   end
 end
