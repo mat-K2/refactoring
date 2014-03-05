@@ -19,9 +19,9 @@ describe Customer do
 
   describe 'print_owing(previous_amount)' do
     before do
-      customer.add_order(Order.new(1))
-      customer.add_order(Order.new(2))
-      customer.add_order(Order.new(3))
+      customer.add_order(Order.new(1, 100))
+      customer.add_order(Order.new(2, 100))
+      customer.add_order(Order.new(3, 100))
       customer.should_receive(:print_details).with(18)
     end
     subject{ customer.print_owing(10) }
