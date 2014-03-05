@@ -8,7 +8,6 @@ class Order
   end
 
   def over_thousand?
-    base_price = self.base_price
-    base_price > 1000
+    self.base_price > 1000
   end
 end
