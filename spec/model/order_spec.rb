@@ -22,15 +22,27 @@ describe Order do
 
   describe 'price' do
     subject{ order.price }
-    context 'base_price > 1000' do
-      let(:quantity){ 1 }
-      let(:item_price){ 1001 }
-      it{ should == 1001 * 0.95 }
+    context 'quantity < 500' do
+      let(:quantity){ 499 }
+      context 'quantity * item_price * 0.1 < 100.0' do
+        let(:item_price){ 2 }
+        it{ should == 1097.8 }
+      end
+      context 'quantity * item_price * 0.1 >= 100.0' do
+        let(:item_price){ 3 }
+        it{ should == 1597.0 }
+      end
     end
-    context 'base_price <= 1000' do
-      let(:quantity){ 1 }
-      let(:item_price){ 1000 }
-      it{ should == 1000 * 0.98 }
+    context 'quantity >= 500' do
+      let(:quantity){ 500 }
+      context 'quantity * item_price * 0.1 < 100.0' do
+        let(:item_price){ 1 }
+        it{ should == 550.0 }
+      end
+      context 'quantity * item_price * 0.1 >= 100.0' do
+        let(:item_price){ 2 }
+        it{ should == 1100.0 }
+      end
     end
   end
 end
