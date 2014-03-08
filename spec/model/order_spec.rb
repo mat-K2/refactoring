@@ -33,7 +33,7 @@ describe Order do
         it{ should == 1597.0 }
       end
     end
-    context 'quantity >= 500' do
+    context 'quantity == 500' do
       let(:quantity){ 500 }
       context 'quantity * item_price * 0.1 < 100.0' do
         let(:item_price){ 1 }
@@ -42,6 +42,17 @@ describe Order do
       context 'quantity * item_price * 0.1 >= 100.0' do
         let(:item_price){ 2 }
         it{ should == 1100.0 }
+      end
+    end
+    context 'quantity > 500' do
+      let(:quantity){ 501 }
+      context 'quantity * item_price * 0.1 < 100.0' do
+        let(:item_price){ 1 }
+        it{ should == 551.05 }
+      end
+      context 'quantity * item_price * 0.1 >= 100.0' do
+        let(:item_price){ 2 }
+        it{ should == 1101.9 }
       end
     end
   end
