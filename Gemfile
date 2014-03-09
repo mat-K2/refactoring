@@ -35,6 +35,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'debugger'
+  gem 'simplecov', :require => false, :group => :test
 end
 
 # Use ActiveModel has_secure_password
