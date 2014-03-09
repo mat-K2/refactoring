@@ -4,11 +4,9 @@ class Haggis
   end
 
   def distance_traveled(time)
-    accelerate_secondary?(time) ? primary_distance_traveled(time) + secondary_distance_traveled(time) : primary_distance_traveled(time)
-  end
-
-  def accelerate_secondary?(time)
-    secondary_time(time) > 0
+    result = primary_distance_traveled(time)
+    result += secondary_distance_traveled(time) if accelerate_secondary?(time)
+    result
   end
 
   def primary_distance_traveled(time)
@@ -37,5 +35,9 @@ class Haggis
 
   def primary_vel
     primary_acc * @delay
+  end
+
+  def accelerate_secondary?(time)
+    secondary_time(time) > 0
   end
 end
