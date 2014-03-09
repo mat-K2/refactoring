@@ -77,4 +77,13 @@ describe Order do
       it{ should == 100.0 }
     end
   end
+
+  describe 'discount(input_val, quantity, year_to_date)' do
+    subject{ order.discount(input_val, quantity, year_to_date) }
+    let(:input_val){ 51 }
+    let(:quantity){ 100 }
+    let(:year_to_date){ 10000 }
+    it{ input_val.should == 51 }
+    it{ should == 49 }
+  end
 end
