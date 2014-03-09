@@ -7,14 +7,13 @@ describe Haggis do
   let(:delay){ 5 }
   let(:haggis){ Haggis.new(primary_force, secondary_force, mass, delay) }
   describe 'distance_traveled(time)' do
+    subject{ haggis.distance_traveled(time) }
     context 'secondary_time <= 0' do
       let(:time){ 5 }
-      subject{ haggis.distance_traveled(time) }
       it{ should == 62.5 }
     end
     context 'secondary_time > 0' do
       let(:time){ 6 }
-      subject{ haggis.distance_traveled(time) }
       it{ should == 162.5 }
     end
   end
