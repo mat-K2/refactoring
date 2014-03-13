@@ -13,16 +13,18 @@ class Person
   end
 
   def number_of_living_descendants
-    children.inject(0) do |count, child|
-      count += 1 if child.alive?
-      count + child.number_of_living_descendants
-    end
+    count_descendants_matching { |descendant| descendant.alive? }
   end
 
   def number_of_descendants_named(name)
+    count_descendants_matching { |descendant| descendant.name == name }
+  end
+
+  protected
+  def count_descendants_matching(&block)
     children.inject(0) do |count, child|
-      count += 1 if child.name == name
-      count + child.number_of_descendants_named(name)
+      count += 1 if yield child
+      count + child.count_descendants_matching(&block)
     end
   end
 
