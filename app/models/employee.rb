@@ -12,38 +12,23 @@ class Employee
   end
 
   def self.managers(employees)
-    managers = []
-    employees.each do |e|
-      managers << e if e.manager?
-    end
-    managers
+    employees.select { |e| e.manager? }
   end
 
   def self.not_managers(employees)
-    not_managers = []
-    employees.each do |e|
-      not_managers << e unless e.manager?
-    end
-    not_managers
+    employees.reject { |e| e.manager? }
   end
 
   def self.offices_of_all(employees)
-    offices = []
-    employees.each { |e| offices << e.office }
-    offices
+    employees.map { |e| e.office }
   end
 
   def self.offices_of_managers(employees)
-    managerOffices = []
-    employees.each do |e|
-      managerOffices << e.office if e.manager?
-    end
-    managerOffices
+    employees.select { |e| e.manager? }.
+              map { |e| e.office }
   end
 
   def self.total_salary_of_all(employees)
-    total = 0
-    employees.each { |e| total += e.salary }
-    total
+    employees.inject(0) { |sum, e| sum + e.salary }
   end
 end
