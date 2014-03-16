@@ -1,13 +1,28 @@
-class Books
+module AssertValidKeys
+  def assert_valid_keys_original(*valid_keys)
+    unknown_keys = keys - [valid_keys].flatten
+    if unknown_keys.any?
+      raise(ArgumentError, "Unknown keys(s): #{unknown_keys.join(", ")}")
+    end
+  end
+end
 
-  def self.find(selector, conditions="", *joins)
+Hash.send(:include, AssertValidKeys)
+
+class Books
+  def self.find(selector, hash={})
+    hash.assert_valid_keys_original :conditions, :joins
+
+    hash[:joins] ||= []
+    hash[:conditions] ||= ""
+
     sql = ["SELECT * FROM books"]
-    joins.each do |join_table|
+    hash[:joins].each do |join_table|
       sql << "LEFT OUTER JOIN #{join_table} ON"
       sql << "books.#{join_table.to_s.chop}_id"
       sql << "= #{join_table}.id"
     end
-    sql << "WHERE #{conditions}" unless conditions.empty?
+    sql << "WHERE #{hash[:conditions]}" unless hash[:conditions].empty?
     sql << "LIMIT 1" if selector == :first
 
     connection.find(sql.join(" "))

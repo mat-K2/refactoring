@@ -11,7 +11,7 @@ describe Books do
       Books.should_receive(:connection).and_return(connection)
       connection.should_receive(:find).with(sql_constructed).and_return(find_result)
     end
-    subject{ Books.find(:all, conditions, joins) }
+    subject{ Books.find(:all, :conditions => conditions, :joins => [joins]) }
     it{ should == [{ 'id' => 1 }] }
   end
 end
