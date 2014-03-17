@@ -1,15 +1,13 @@
 class Post
   attr_accessor :state
 
-  def failure
-    self.state = :failure
+  def self.states(*args)
+    args.each do |arg|
+      define_method arg do
+        self.state = arg
+      end
+    end
   end
 
-  def error
-    self.state = :error
-  end
-
-  def success
-    self.state = :success
-  end
+  states :failure, :error, :success
 end
