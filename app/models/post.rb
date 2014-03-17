@@ -1,15 +1,15 @@
 class Post
   attr_accessor :state
 
-  def self.def_each(*method_names, &block)
-    method_names.each do |method_name|
-      define_method method_name do
-        instance_exec method_name, &block
-      end
-    end
+  def failure
+    self.state = :failure
   end
 
-  def_each :failure, :error, :success do |method_name|
-    self.state = method_name
+  def error
+    self.state = :error
+  end
+
+  def success
+    self.state = :success
   end
 end
