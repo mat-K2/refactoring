@@ -1,13 +1,18 @@
 class PostData
   def initialize(post_data)
-    @post_data = post_data
+    self.extend post_data.to_module
   end
+end
 
-  def params
-    @post_data[:params]
-  end
-
-  def session
-    @post_data[:session]
+class Hash
+  def to_module
+    hash = self
+    Module.new do
+      hash.each_pair do |key, value|
+        define_method key do
+          value
+        end
+      end
+    end
   end
 end

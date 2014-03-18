@@ -21,6 +21,6 @@ describe PostData do
 
   describe 'date' do
     subject{ post_data.date }
-    specify{ expect{ subject }.to raise_error(NoMethodError) }
+    it{ should == 'date-data' }
   end
 end
