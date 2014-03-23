@@ -2,10 +2,12 @@ require 'spec_helper'
 
 describe AccountType do
   let(:type){ 'normal' }
-  let(:account_type){ AccountType.new(type) }
+  let(:interest_rate){ 0.5 }
+  let(:account_type){ AccountType.new(type, interest_rate) }
 
-  describe 'initialize(type)' do
+  describe 'initialize(type, interest_rate)' do
     it{ account_type.instance_variable_get(:@type).should == 'normal' }
+    it{ account_type.instance_variable_get(:@interest_rate).should == 0.5 }
   end
 
   describe 'overdraft_charge(days_overdrawn)' do
