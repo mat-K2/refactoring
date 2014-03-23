@@ -1,9 +1,6 @@
 class AccountType
-  attr_accessor :interest_rate
-
-  def initialize(type, interest_rate)
+  def initialize(type)
     @type = type
-    @interest_rate = interest_rate
   end
 
   def premium?
