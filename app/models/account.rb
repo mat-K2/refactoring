@@ -1,18 +1,13 @@
 # -*- coding: utf-8 -*-
 class Account
-  attr_accessor :interest_rate
-
-  def initialize(account_type, days_overdrawn)
+  def initialize(account_type, days_overdrawn, interest_rate)
     @account_type = account_type
     @days_overdrawn = days_overdrawn
+    @interest_rate = interest_rate
   end
 
   def interest_for_amount_days(amount, days)
-    interest_rate * amount * days / 365
-  end
-
-  def interest_rate
-    @account_type.interest_rate
+    @interest_rate * amount * days / 365
   end
 
   def bank_charge
