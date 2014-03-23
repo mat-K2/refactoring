@@ -1,10 +1,23 @@
 # -*- coding: utf-8 -*-
 class Account
-  def gamma(input_val, quantity, year_to_date)
-    Gamma.new(self, input_val, quantity, year_to_date).compute
+  def initialize(account_type, days_overdrawn)
+    @account_type = account_type
+    @days_overdrawn = days_overdrawn
   end
 
-  def delta
-    10
+  def overdraft_charge
+    if @account_type.premium?
+      result = 10
+      result += (@days_overdrawn - 7) * 0.85 if @days_overdrawn > 7
+      result
+    else
+      @days_overdrawn * 1.75
+    end
+  end
+
+  def bank_charge
+    result = 4.5
+    result += overdraft_charge if @days_overdrawn > 0
+    result
   end
 end
