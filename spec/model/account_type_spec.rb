@@ -3,6 +3,11 @@ require 'spec_helper'
 describe AccountType do
   let(:type){ 'normal' }
   let(:account_type){ AccountType.new(type) }
+
+  describe 'initialize(type)' do
+    it{ account_type.instance_variable_get(:@type).should == 'normal' }
+  end
+
   describe 'overdraft_charge(days_overdrawn)' do
     subject{ account_type.overdraft_charge(days_overdrawn) }
     context 'acccount_type is premium' do
