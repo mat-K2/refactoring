@@ -1,16 +1,14 @@
 require 'spec_helper'
 
 describe Person do
-  before do
-    class EmployeeNumberGenerator; end
-  end
   let(:person){ Person.new }
 
-  describe 'initialize' do
+  describe 'telephone_number' do
     before do
-      EmployeeNumberGenerator.stub(:next).and_return(1)
+      person.office_area_code = '001'
+      person.office_number = '0123456789'
     end
-    it{ person.emails.should == [] }
-    it{ person.employee_number.should == 1 }
+    subject{ person.telephone_number }
+    it{ should == '(001) 0123456789'}
   end
 end

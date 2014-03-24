@@ -1,12 +1,9 @@
 class Person
-  def self.attr_with_default(options)
-    options.each_pair do |attribute, default_value|
-      eval "def #{attribute}
-        @#{attribute} ||= #{default_value}
-      end"
-    end
-  end
+  attr_reader :name
+  attr_accessor :office_area_code
+  attr_accessor :office_number
 
-  attr_with_default :emails => "[]",
-                    :employee_number => "EmployeeNumberGenerator.next"
+  def telephone_number
+    '(' + @office_area_code + ') ' + @office_number
+  end
 end
