@@ -3,12 +3,12 @@ require 'spec_helper'
 describe Person do
   let(:person){ Person.new }
 
-  describe 'telephone_number' do
+  describe 'manager' do
+    let(:department){ Department.new('manager-name') }
     before do
-      person.area_code = '001'
-      person.number = '0123456789'
+      person.department = department
     end
-    subject{ person.telephone_number }
-    it{ should == '(001) 0123456789'}
+    subject{ person.department.manager }
+    it{ should == 'manager-name' }
   end
 end
