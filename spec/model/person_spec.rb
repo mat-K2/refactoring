@@ -8,7 +8,7 @@ describe Person do
     before do
       person.department = department
     end
-    subject{ person.department.manager }
+    subject{ person.manager }
     it{ should == 'manager-name' }
   end
 end
