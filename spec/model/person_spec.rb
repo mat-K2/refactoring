@@ -8,4 +8,9 @@ describe Person do
     subject{ person.manager }
     it{ should == 'manager-name' }
   end
+
+  describe 'department.manager' do
+    subject{ person.department.manager }
+    it{ should == 'manager-name' }
+  end
 end
