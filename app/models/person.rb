@@ -1,7 +1,9 @@
 class Person
-  extend Forwardable
+  def initialize(department)
+    @department = department
+  end
 
-  def_delegator :@department, :manager
-
-  attr_accessor :department
+  def manager
+    @department.manager
+  end
 end
