@@ -86,4 +86,20 @@ describe Order do
     it{ input_val.should == 51 }
     it{ should == 49 }
   end
+
+  describe 'discount_factor' do
+    before do
+      order.should_receive(:base_price).and_return(base_price)
+    end
+    subject{ order.discount_factor }
+
+    context 'base_price <= 1000' do
+      let(:base_price){ 1000 }
+      it{ should == 0.98 }
+    end
+    context 'base_price > 1000' do
+      let(:base_price){ 1001 }
+      it{ should == 0.95 }
+    end
+  end
 end

@@ -27,4 +27,9 @@ describe Customer do
     subject{ customer.print_owing(10) }
     specify{ expect{ subject }.not_to raise_error }
   end
+
+  describe 'print_details(outstanding)' do
+    subject{ customer.print_details('string') }
+    specify{ expect{ subject }.not_to raise_error }
+  end
 end
