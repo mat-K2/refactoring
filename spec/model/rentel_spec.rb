@@ -6,6 +6,12 @@ describe Rental do
   let(:movie){ Movie.new(movie_title, price_instance) }
   let(:days_rented){ 10 }
   let(:rental){ Rental.new(movie, days_rented) }
+
+  describe 'charge' do
+    subject{ rental.charge }
+    it { should == 14 }
+  end
+
   describe 'frequent_renter_points' do
     subject{ rental.frequent_renter_points }
     context 'movie_price_code == 1' do
