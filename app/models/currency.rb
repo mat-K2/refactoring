@@ -1,21 +1,20 @@
 class Currency
   attr_reader :code
 
-  Instances = {}
-
   def initialize(code)
     @code = code
   end
 
-  def self.load_currencies
-    new("USD").store
+  def eql?(other)
+    self == other
   end
 
-  def store
-    Instances[code] = self
+  def ==(other)
+    other.equal?(other) ||
+      (other.instance_of?(self.class) && other.code == code)
   end
 
-  def self.get(code)
-    Instances[code]
+  def hash
+    code.hash
   end
 end

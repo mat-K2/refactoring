@@ -5,10 +5,10 @@ describe Currency do
   let(:currency_2_new) { Currency.new("USD") }
 
   describe "==" do
-    it { currency_1_new.should_not == currency_2_new }
+    it { currency_1_new.should == currency_2_new }
   end
 
   describe "eql?" do
-    it { currency_1_new.should_not eql(currency_2_new) }
+    it { currency_1_new.should eql(currency_2_new) }
   end
 end
