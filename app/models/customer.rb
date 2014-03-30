@@ -8,7 +8,7 @@ class Customer
     @name = name
   end
 
-  def self.create(name)
+  def self.with_name(name)
     Instances[name]
   end
 
