@@ -4,7 +4,7 @@ class Order
     @customer = Customer.new(customer)
   end
 
-  def customer
+  def customer_name
     @customer.name
   end
 
