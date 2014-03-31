@@ -1,22 +1,37 @@
 require 'spec_helper'
 
 describe Client do
-  let(:order_1) { Order.new('customer_1') }
-  let(:order_2) { Order.new('customer_1') }
-  let(:order_3) { Order.new('customer_2') }
-  before do
-    Customer.load_customers
+  let(:row) { [] }
+  let(:client) { Client.new(row) }
+
+  describe 'name' do
+    before do
+      row[0] = 'test-name'
+    end
+    subject { client.name }
+    it { should == 'test-name' }
   end
 
-  describe "initialize(customer_name)" do
-    it{ order_1.instance_variable_get(:@customer).should == order_2.instance_variable_get(:@customer) }
-    it{ order_1.instance_variable_get(:@customer).should_not == order_3.instance_variable_get(:@customer) }
+  describe 'name=(value)' do
+    before do
+      client.name = 'test-name'
+    end
+    it { client.name.should == 'test-name' }
   end
 
-  describe 'self.number_of_orders_for(orders, customer)' do
-    let(:orders) { [order_1, order_2, order_3] }
-    let(:customer) { 'customer_1' }
-    subject { Client.number_of_orders_for(orders, customer) }
-    it { should == 2 }
+  describe 'wins' do
+    before do
+      row[0] = 'test-name'
+      row[1] = '1'
+    end
+    subject { client.wins }
+    it { should == 1 }
+  end
+
+  describe 'wins=(value)' do
+    before do
+      client.wins = '1'
+    end
+    it { client.wins.should == 1 }
   end
 end
