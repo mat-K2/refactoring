@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe Client do
-  let(:row) { [] }
+  let(:row) { Performance.new }
   let(:client) { Client.new(row) }
 
   describe 'name' do
     before do
-      row[0] = 'test-name'
+      row.name = 'test-name'
     end
     subject { client.name }
     it { should == 'test-name' }
@@ -21,8 +21,8 @@ describe Client do
 
   describe 'wins' do
     before do
-      row[0] = 'test-name'
-      row[1] = '1'
+      row.name = 'test-name'
+      row.wins = '1'
     end
     subject { client.wins }
     it { should == 1 }

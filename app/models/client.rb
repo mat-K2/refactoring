@@ -4,18 +4,18 @@ class Client
   end
 
   def name
-    @row[0]
+    @row.name
   end
 
   def name=(value)
-    @row[0] = value
+    @row.name = value
   end
 
   def wins
-    @row[1].to_i
+    @row.wins.to_i
   end
 
   def wins=(value)
-    @row[1] = value
+    @row.wins = value
   end
 end
