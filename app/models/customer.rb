@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+require 'set'
+
 class Customer
   attr_reader :name
 
@@ -6,6 +8,16 @@ class Customer
 
   def initialize(name)
     @name = name
+    @orders = Set.new
+  end
+
+  def friend_orders
+    # Orderがリンクを更新するときにのみ使われる
+    @orders
+  end
+
+  def add_order(order)
+    order.customer = self
   end
 
   def self.with_name(name)
