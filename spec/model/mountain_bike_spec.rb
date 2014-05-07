@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe MountainBike do
   let(:instance_params) { {
-      :type_code => :rigid,
       :tire_width => 2.5,
       :commission => 0.5,
       :base_price => 10000,
@@ -22,13 +21,13 @@ describe MountainBike do
     end
     context 'front_suspension' do
       before do
-        mountain_bike.type_code = :front_suspension
+        mountain_bike.type_code = FrontSuspensionMountainBike
       end
       it { should == 12.5 }
     end
     context 'full_suspension' do
       before do
-        mountain_bike.type_code = :full_suspension
+        mountain_bike.type_code = FullSuspensionMountainBike
       end
       it { should == 36.5 }
     end
@@ -42,13 +41,13 @@ describe MountainBike do
     end
     context 'front_suspension' do
       before do
-        mountain_bike.type_code = :front_suspension
+        mountain_bike.type_code = FrontSuspensionMountainBike
       end
       it { should == 20000 }
     end
     context 'full_suspension' do
       before do
-        mountain_bike.type_code = :full_suspension
+        mountain_bike.type_code = FullSuspensionMountainBike
       end
       it { should == 28000 }
     end
