@@ -2,14 +2,12 @@ require "spec_helper"
 
 describe MountainBike do
   let(:rigid_params) { {
-      :type_code => :rigid,
       :tire_width => 2.5,
       :commission => 0.5,
       :base_price => 10000,
     }
   }
   let(:front_suspension_params) { {
-      :type_code => :front_suspension,
       :tire_width => 3.0,
       :commission => 1.0,
       :base_price => 15000,
@@ -18,7 +16,6 @@ describe MountainBike do
     }
   }
   let(:full_suspension_params) { {
-      :type_code => :full_suspension,
       :tire_width => 4.0,
       :commission => 1.5,
       :base_price => 20000,
@@ -28,7 +25,7 @@ describe MountainBike do
       :rear_suspension_price => 8000
     }
   }
-  let(:rigid_bike) { MountainBike.new(rigid_params) }
+  let(:rigid_bike) { MountainBike.new(RigidMountainBike.new(rigid_params)) }
 
   describe "off_road_ability" do
     subject { rigid_bike.off_road_ability }
@@ -79,7 +76,7 @@ describe MountainBike do
       before do
         rigid_bike.add_front_suspension(front_suspension_params)
       end
-      it { should == :full_suspension }
+      it { should be_kind_of(FullSuspensionMountainBike) }
     end
     context "not have front suspension" do
       specify { expect { subject }.to raise_error(RuntimeError, "You can't add rear suspension unless you have front suspension") }
