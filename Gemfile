@@ -34,7 +34,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'debugger'
+  gem 'byebug'
   gem 'simplecov', :require => false, :group => :test
 end
 
